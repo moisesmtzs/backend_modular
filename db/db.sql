@@ -29,7 +29,7 @@ create table schedule(
     id bigserial primary key,
     begin_hour timestamp not null,
     end_hour timestamp not null,
-    days int not null,
+    days varchar(13) not null,
     classroom varchar(10) not null,
     building varchar(20) not null,
     created_at timestamp(0) not null,
@@ -85,3 +85,15 @@ create table instruction(
     created_at timestamp(0) not null,
     updated_at timestamp(0) not null
 )
+
+drop table if exists ia_task cascade;
+create table ia_task(
+    id bigint not null,
+    instruction varchar(255) not null,
+    action varchar(255) not null,
+    table varchar(255) not null,
+    created_at timestamp(0) not null,
+    updated_at timestamp(0) not null
+)
+
+
