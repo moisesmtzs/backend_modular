@@ -91,7 +91,7 @@ create table ia_task(
     id bigint not null,
     instruction varchar(255) not null,
     action varchar(255) not null,
-    table varchar(255) not null,
+    object varchar(255) not null,
     created_at timestamp(0) not null,
     updated_at timestamp(0) not null
 )
