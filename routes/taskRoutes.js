@@ -7,4 +7,6 @@ module.exports = (app) => {
 
     app.post('/api/tasks/create', TasksController.create);
 
+    app.delete('/api/tasks/delete/:id', TasksController.delete);
+
 }
