@@ -53,4 +53,16 @@ Task.create = (task) => {
 
 }
 
+Task.delete = (id) => {
+
+    const sql = `
+    DELETE FROM
+        tasks
+    WHERE
+        id = $1
+    `;
+    return db.oneOrNone(sql, id);
+
+}
+
 module.exports = Task;

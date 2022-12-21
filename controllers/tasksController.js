@@ -47,6 +47,26 @@ module.exports = {
             });
         }
 
+    },
+
+    async delete(req, res, next) {
+
+        try {
+            const id = req.params.id;
+            await Task.delete(id);
+            return res.status(201).json({
+                success: true,
+                message: 'Tarea eliminada correctamente'
+            });
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al eliminar la tarea',
+                success: false,
+                error: error
+            });
+        }
+
     }
 
 }
