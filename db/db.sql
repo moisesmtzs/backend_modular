@@ -75,7 +75,7 @@ create table user_has_tasks(
     foreign key (id_user)
         references users(id) on update cascade on delete cascade,
     foreign key (id_task)
-        references task(id) on update cascade on delete cascade
+        references tasks(id) on update cascade on delete cascade
 )
 
 drop table if exists instruction cascade;
