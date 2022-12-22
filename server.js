@@ -41,7 +41,7 @@ const upload = multer({
 users(app, upload);
 tasks(app);
 
-server.listen(3000, '192.168.100.5' || 'localhost', function() {
+server.listen(3000, '192.168.1.72' || 'localhost', function() {
     console.log("Servidor en NodeJS iniciado..." + port );
 });
 
