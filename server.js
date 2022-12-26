@@ -54,3 +54,7 @@ module.exports = {
     app: app,
     server: server,
 }
+module.exports = {
+    app: app,
+    server: server,
+}
