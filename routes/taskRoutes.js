@@ -7,6 +7,9 @@ module.exports = (app) => {
 
     app.post('/api/tasks/create', TasksController.create);
 
+    app.put('/api/tasks/update', TasksController.update);
+    app.put('/api/tasks/updateStatus/:id/:status', TasksController.updateStatus);
+
     app.delete('/api/tasks/delete/:id', TasksController.delete);
 
 }

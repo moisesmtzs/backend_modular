@@ -53,6 +53,48 @@ Task.create = (task) => {
 
 }
 
+Task.update = (task) => {
+    
+    const sql = `
+    UPDATE
+        tasks
+    SET
+        name = $2,
+        description = $3,
+        delivery_date = $4,
+        subject = $5,
+        type = $6,
+        update_at = $7
+    WHERE
+        id = $1`;
+    return db.none(sql, [
+        task.id,
+        task.name,
+        task.description,
+        task.delivery_date,
+        task.subject,
+        task.type,
+        new Date(),
+    ]);
+}
+
+Task.updateStatus = (id, status) => {
+
+    const sql = `
+    UPDATE
+        tasks
+    SET
+        status = $2,
+        update_at = $3
+    WHERE
+        id = $1`;
+    return db.none(sql, [
+        id,
+        status,
+        new Date(),
+    ]);
+}
+
 Task.delete = (id) => {
 
     const sql = `

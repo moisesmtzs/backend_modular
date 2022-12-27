@@ -49,6 +49,49 @@ module.exports = {
 
     },
 
+    async update(req, res, next) {
+
+        try {
+            const task = req.body;
+
+            await Task.update(task);
+
+            return res.status(201).json({
+                success: true,
+                message: 'Tarea actualizada correctamente'
+            });
+
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error actualizando la tarea',
+                success: false,
+                error: error
+            });
+        }
+    },
+
+    async updateStatus(req, res, next) {
+
+        try {
+            const id = req.params.id;
+            const status = req.params.status;
+            await Task.updateStatus(id, status);
+            return res.status(201).json({
+                success: true,
+                message: 'Tarea actualizada correctamente'
+            });
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error actualizando la tarea',
+                success: false,
+                error: error
+            });
+        }
+
+    },
+
     async delete(req, res, next) {
 
         try {
