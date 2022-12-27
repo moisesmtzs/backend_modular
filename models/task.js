@@ -64,7 +64,7 @@ Task.update = (task) => {
         delivery_date = $4,
         subject = $5,
         type = $6,
-        update_at = $7
+        updated_at = $7
     WHERE
         id = $1`;
     return db.none(sql, [
@@ -85,7 +85,7 @@ Task.updateStatus = (id, status) => {
         tasks
     SET
         status = $2,
-        update_at = $3
+        updated_at = $3
     WHERE
         id = $1`;
     return db.none(sql, [
