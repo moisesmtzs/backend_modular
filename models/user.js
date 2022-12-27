@@ -14,7 +14,27 @@ User.getAll = () => {
     return db.manyOrNone(sql);
 }
 
-User.findById = (id, callback) => {
+User.findById = (id) => {
+
+    const sql = `
+    SELECT 
+        id,
+        name,
+        lastname,
+        phone,
+        email,
+        password,
+        image
+    FROM
+        users
+    WHERE
+        id = $1
+    `;
+    return db.oneOrNone(sql, id);
+        
+}
+
+User.findByIdPassport = (id, callback) => {
 
     const sql = `
     SELECT 
