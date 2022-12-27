@@ -94,7 +94,7 @@ module.exports = {
 
             if ( isPasswordValid ) {
 
-                const token = jwt.sign({ id: myUser.id, email: myUser.email }, key.secretOrKey, {});
+                const token = jwt.sign({ id: myUser.id, email: myUser.email }, key.secretOrKey, { expiresIn: 604800 });
                 const data = {
                     id: myUser.id,
                     name: myUser.name,

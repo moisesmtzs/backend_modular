@@ -14,7 +14,7 @@ User.getAll = () => {
     return db.manyOrNone(sql);
 }
 
-User.findById = (id) => {
+User.findById = (id, callback) => {
 
     const sql = `
     SELECT 
@@ -30,7 +30,7 @@ User.findById = (id) => {
     WHERE
         id = $1
     `;
-    return db.oneOrNone(sql, id);
+    return db.oneOrNone(sql, id).then(user => { callback(null, user) });
         
 }
 
