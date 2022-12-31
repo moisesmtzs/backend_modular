@@ -11,6 +11,7 @@ const serviceAccount = require('./serviceAccountKey.json');
 
 const users = require('./routes/userRoutes');
 const tasks = require('./routes/taskRoutes');
+const ia = require('./routes/iaRoutes');
 
 const port = process.env.PORT || 3000;
 
@@ -40,8 +41,9 @@ const upload = multer({
 
 users(app, upload);
 tasks(app);
+ia(app);
 
-server.listen(3000, '192.168.100.5' || 'localhost', function() {
+server.listen(3000, '192.168.1.69' || 'localhost', function() {
     console.log("Servidor en NodeJS iniciado..." + port );
 });
 
