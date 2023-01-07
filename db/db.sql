@@ -11,8 +11,8 @@ create table if not exists users (
     updated_at timestamp(0) null
 )
 
-drop table if exists class cascade;
-create table class(
+drop table if exists subject cascade;
+create table subject(
     id bigserial primary key,
     id_user bigint not null,
     name varchar(150) not null,
@@ -24,16 +24,19 @@ create table class(
         references users(id) on update cascade on delete cascade
 )
 
-drop table if exists schedule cascade;
-create table schedule(
+drop table if exists clase cascade;
+create table clase(
     id bigserial primary key,
-    begin_hour timestamp not null,
-    end_hour timestamp not null,
+    id_subject bigint not null,
+    begin_hour varchar(10) not null,
+    end_hour varchar(10) not null,
     days varchar(13) not null,
     classroom varchar(10) not null,
     building varchar(20) not null,
     created_at timestamp(0) not null,
-    updated_at timestamp(0) not null
+    updated_at timestamp(0) not null,
+    foreign key (id_subject) 
+        references subject(id) on update cascade on delete cascade
 )
 
 drop table if exists class_has_schedule cascade;

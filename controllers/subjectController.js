@@ -1,15 +1,15 @@
-const Clase = require('../models/class');
+const Subject = require('../models/subject');
 
 module.exports = {
 
     async create(req, res, next) {
 
         try{
-            const clase = req.body;//CAPTURO LOS DATOS QUE ME ENVIE EL CLIENTE
-                const data = await Clase.create(clase);
+            const subject = req.body;//CAPTURO LOS DATOS QUE ME ENVIE EL CLIENTE
+                const data = await Subject.create(subject);
                     return res.status(201).json({
                         success: true,
-                        message: 'Clase creada correctamente',
+                        message: 'Materia creada correctamente',
                         data: data.id //Id de la materia que se registro
                     });
             
@@ -22,5 +22,5 @@ module.exports = {
             });
             
         }
-    }
+    },
 }

@@ -1,12 +1,12 @@
 //Farfan
 const db = require('../config/config');
 
-const Clase = {};
+const Subject = {};
 
-Clase.create = async(clase) => {//Agregar el id del usuario
+Subject.create = async(subject) => {
     const sql = `
     INSERT INTO 
-        class(
+        subject(
             id_user,
             name,
             subject_code,
@@ -18,13 +18,13 @@ Clase.create = async(clase) => {//Agregar el id del usuario
     `;
 
     return db.oneOrNone(sql, [
-        clase.id_user,
-        clase.name,
-        clase.subject_code,
-        clase.professor_name,
+        subject.id_user,
+        subject.name,
+        subject.subject_code,
+        subject.professor_name,
         new Date(),
         new Date()
     ]);
 }
 
-module.exports = Clase;
+module.exports = Subject;
