@@ -1,4 +1,3 @@
-//Farfan
 const db = require('../config/config');
 
 const Subject = {};
@@ -25,6 +24,55 @@ Subject.create = async(subject) => {
         new Date(),
         new Date()
     ]);
+}
+
+Subject.findByUser = (id_user) => {
+    const sql = `
+    SELECT
+        S.id,
+        S.id_user,
+        S.name,
+        S.subject_code,
+        S.professor_name,
+    FROM subject as S
+    WHERE S.id_user = $1 
+    GROUP BY S.id
+    `;
+
+    return db.manyOrNone(sql, [id_user]);
+}
+
+
+Subject.update = (subject) => {
+    const sql = `
+    UPDATE
+        subject
+    SET
+        name = $2,
+        subject_code = $3,
+        profesor_name = $4,
+        updated_at = $5
+    WHERE
+        id = $1`;
+
+    return db.none(sql, [
+        subject.id,
+        subject.name,
+        subject.subject_code,
+        subject.profesor_name,
+        new Date(),
+    ]);
+}
+
+Subject.delete = (id) => {
+    const sql = `
+    DELETE FROM
+        subject
+    WHERE
+        id = $1
+    `;
+
+    return db.oneOrNone(sql, id);
 }
 
 Subject.findByName = async(name, id_user) => {

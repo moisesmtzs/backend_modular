@@ -31,4 +31,58 @@ Clase.create = async(clase) => {
     ]);
 }
 
+Clase.findByUserAndSubject = ( id_subject) => {
+    const sql = `
+    SELECT
+        C.id,
+        C.id_subject,
+        C.begin_hour,
+        C.end_hour,
+        C.days,
+        C.classroom,
+        C.building,
+    FROM clase as C
+    WHERE C.id_subject = $1
+    GROUP BY T.id
+    `;
+
+    return db.manyOrNone(sql, [id_subject]);
+}
+
+Clase.update = (clase) => {
+    const sql = `
+    UPDATE
+        clase
+    SET
+        begin_hour = $3,
+        end_hour = $4,
+        days = $5,
+        clasroom = $6,
+        building = $7
+        updated_at = $7
+    WHERE
+        id = $1`;
+
+    return db.none(sql, [
+        clase.id,
+        clase.begin_hour,
+        clase.end_hour,
+        clase.days,
+        clase.clasroom,
+        clase.building,
+        new Date(),
+    ]);
+}
+
+Clase.delete = (id) => {
+    const sql = `
+    DELETE FROM
+        clase
+    WHERE
+        id = $1
+    `;
+    
+    return db.oneOrNone(sql, id);
+}
+
 module.exports = Clase;

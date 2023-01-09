@@ -3,14 +3,13 @@ const Subject = require('../models/subject');
 module.exports = {
 
     async create(req, res, next) {
-
         try{
-            const subject = req.body;//CAPTURO LOS DATOS QUE ME ENVIE EL CLIENTE
+            const subject = req.body;
                 const data = await Subject.create(subject);
                     return res.status(201).json({
                         success: true,
                         message: 'Materia creada correctamente',
-                        data: data.id //Id de la materia que se registro
+                        data: data.id
                     });
             
         }catch (error) {
@@ -24,12 +23,64 @@ module.exports = {
         }
     },
 
-    async findByName(req, res, next) {
+    async findByUserAndStatus(req, res, next) {
+        try {
+            const id_user = req.params.id_user;
+            const data = await Subject.findByUser(id_user);
+            return res.status(201).json(data);
+            
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al obtener las materias del usuario',
+                error: error,
+                success: false
+            });
+            
+        }
+    },
 
+    async update(req, res, next) {
+        try {
+            const subject = req.body;
+            await Subject.update(subject);
+            return res.status(201).json({
+                success: true,
+                message: 'Materia actualizada correctamente'
+            });
+            
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error actualizando la materia',
+                success: false,
+                error: error
+            });
+        }
+    },
+
+    async delete(req, res, next) {
+        try {
+            const id = req.params.id;
+            await Subject.delete(id);
+            return res.status(201).json({
+                success: true,
+                message: 'Materia eliminada correctamente'
+            });
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al eliminar la materia',
+                success: false,
+                error: error
+            });
+        }
+    },
+
+    async findByName(req, res, next) {
         try {
             const id_user = req.params.id;
             const name = req.params.name;
-
             const data = await Subject.findByName(name, id_user);
             return res.status(201).json(data);
             
@@ -42,6 +93,6 @@ module.exports = {
             });
             
         }
-
     }
+
 }
