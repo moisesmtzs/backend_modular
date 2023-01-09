@@ -3,5 +3,5 @@ const subjectController = require('../controllers/subjectController');//tenemos 
 module.exports = (app) => {
 
     app.post('/api/subject/create', subjectController.create);//api/tabla/metodo
-
+    app.get('/api/subject/findByName/:name/:id', subjectController.findByName);
 }

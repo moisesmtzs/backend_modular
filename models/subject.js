@@ -27,4 +27,21 @@ Subject.create = async(subject) => {
     ]);
 }
 
+Subject.findByName = async(name, id_user) => {
+    const sql = `
+    SELECT
+        *
+    FROM
+        subject
+    WHERE
+        name = $1
+    AND
+        id_user = $2
+    `;
+    return db.manyOrNone(sql, [
+        name,
+        id_user
+    ]);
+}
+
 module.exports = Subject;

@@ -23,4 +23,25 @@ module.exports = {
             
         }
     },
+
+    async findByName(req, res, next) {
+
+        try {
+            const id_user = req.params.id;
+            const name = req.params.name;
+
+            const data = await Subject.findByName(name, id_user);
+            return res.status(201).json(data);
+            
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al recuperar la Materia por Nombre',
+                error: error,
+                success: false
+            });
+            
+        }
+
+    }
 }

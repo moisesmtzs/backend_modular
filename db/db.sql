@@ -39,19 +39,6 @@ create table clase(
         references subject(id) on update cascade on delete cascade
 )
 
-drop table if exists class_has_schedule cascade;
-create table class_has_schedule(
-    id_class bigint not null,
-    id_schedule bigint not null,
-    created_at timestamp(0) not null,
-    updated_at timestamp(0) not null,
-    primary key (id_class, id_schedule),
-    foreign key (id_class)
-        references class(id) on update cascade on delete cascade,
-    foreign key (id_schedule)
-        references schedule(id) on update cascade on delete cascade
-)
-
 drop table if exists tasks cascade;
 create table tasks(
     id bigserial primary key,
