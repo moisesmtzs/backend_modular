@@ -32,7 +32,7 @@ Subject.findByUser = (id_user) => {
         S.id_user,
         S.name,
         S.subject_code,
-        S.professor_name,
+        S.professor_name
     FROM 
         subject as S
     WHERE 

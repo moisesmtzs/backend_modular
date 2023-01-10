@@ -40,7 +40,7 @@ Clase.findByUserAndSubject = (id_user, id_subject) => {
         C.end_hour,
         C.days,
         C.classroom,
-        C.building,
+        C.building
     FROM clase as C
     WHERE C.id_user = $1 AND C.id_subject = $1
     GROUP BY C.id

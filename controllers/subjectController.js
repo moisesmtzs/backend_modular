@@ -26,6 +26,7 @@ module.exports = {
     async findByUser(req, res, next) {
         try {
             const id_user = req.params.id_user;
+            
             const data = await Subject.findByUser(id_user);
             return res.status(201).json(data);
             
