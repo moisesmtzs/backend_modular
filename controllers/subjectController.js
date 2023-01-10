@@ -23,7 +23,7 @@ module.exports = {
         }
     },
 
-    async findByUserAndStatus(req, res, next) {
+    async findByUser(req, res, next) {
         try {
             const id_user = req.params.id_user;
             const data = await Subject.findByUser(id_user);

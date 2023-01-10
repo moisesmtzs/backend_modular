@@ -1,5 +1,4 @@
 const db = require('../config/config');
-
 const Subject = {};
 
 Subject.create = async(subject) => {
@@ -34,10 +33,12 @@ Subject.findByUser = (id_user) => {
         S.name,
         S.subject_code,
         S.professor_name,
-    FROM subject as S
-    WHERE S.id_user = $1 
-    GROUP BY S.id
-    `;
+    FROM 
+        subject as S
+    WHERE 
+        S.id_user = $1 
+    GROUP BY 
+        S.id`;
 
     return db.manyOrNone(sql, [id_user]);
 }
@@ -69,8 +70,7 @@ Subject.delete = (id) => {
     DELETE FROM
         subject
     WHERE
-        id = $1
-    `;
+        id = $1`;
 
     return db.oneOrNone(sql, id);
 }
@@ -84,8 +84,8 @@ Subject.findByName = async(name, id_user) => {
     WHERE
         name = $1
     AND
-        id_user = $2
-    `;
+        id_user = $2`;
+
     return db.manyOrNone(sql, [
         name,
         id_user

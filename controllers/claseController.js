@@ -4,12 +4,12 @@ module.exports = {
 
     async create(req, res, next) {
         try{
-            const clase = req.body;//CAPTURO LOS DATOS QUE ME ENVIE EL CLIENTE
+            const clase = req.body;
                 const data = await Clase.create(clase);
                     return res.status(201).json({
                         success: true,
                         message: 'Clase creada correctamente',
-                        data: data.id //Id de la materia que se registro
+                        data: data.id
                     });
             
         }catch (error) {
@@ -25,8 +25,10 @@ module.exports = {
 
     async findByUserAndSubject(req, res, next) {
         try {
+            const id_user = req.params.id_user;
             const id_subject = req.params.id_subject;
-            const data = await Clase.findByUserAndSubject( id_subject);
+
+            const data = await Clase.findByUserAndSubject(id_user, id_subject);
             return res.status(201).json(data);
         
         } catch (error) {

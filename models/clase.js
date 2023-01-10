@@ -1,12 +1,11 @@
-//Farfan
 const db = require('../config/config');
-
 const Clase = {};
 
 Clase.create = async(clase) => {
     const sql = `
     INSERT INTO 
         clase(
+            id_user,
             id_subject,
             begin_hour,
             end_hour,
@@ -16,10 +15,11 @@ Clase.create = async(clase) => {
             created_at,
             updated_at
         )
-    VALUES ( $1, $2, $3, $4, $5, $6, $7, $8 ) RETURNING id
+    VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9 ) RETURNING id
     `;
 
     return db.oneOrNone(sql, [
+        task.id_user,
         clase.id_subject,
         clase.begin_hour,
         clase.end_hour,
@@ -31,7 +31,7 @@ Clase.create = async(clase) => {
     ]);
 }
 
-Clase.findByUserAndSubject = ( id_subject) => {
+Clase.findByUserAndSubject = (id_user, id_subject) => {
     const sql = `
     SELECT
         C.id,
@@ -42,11 +42,11 @@ Clase.findByUserAndSubject = ( id_subject) => {
         C.classroom,
         C.building,
     FROM clase as C
-    WHERE C.id_subject = $1
-    GROUP BY T.id
+    WHERE C.id_user = $1 AND C.id_subject = $1
+    GROUP BY C.id
     `;
 
-    return db.manyOrNone(sql, [id_subject]);
+    return db.manyOrNone(sql, [id_user, id_subject]);
 }
 
 Clase.update = (clase) => {
@@ -59,7 +59,7 @@ Clase.update = (clase) => {
         days = $5,
         clasroom = $6,
         building = $7
-        updated_at = $7
+        updated_at = $8
     WHERE
         id = $1`;
 

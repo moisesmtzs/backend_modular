@@ -27,6 +27,7 @@ create table subject(
 drop table if exists clase cascade;
 create table clase(
     id bigserial primary key,
+    id_user bigint not null,
     id_subject bigint not null,
     begin_hour varchar(10) not null,
     end_hour varchar(10) not null,
@@ -36,7 +37,9 @@ create table clase(
     created_at timestamp(0) not null,
     updated_at timestamp(0) not null,
     foreign key (id_subject) 
-        references subject(id) on update cascade on delete cascade
+        references subject(id) on update cascade on delete cascade,
+    foreign key (id_user)
+        references users(id) on update cascade on delete cascade
 )
 
 drop table if exists tasks cascade;
