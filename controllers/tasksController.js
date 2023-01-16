@@ -24,6 +24,27 @@ module.exports = {
 
     },
 
+    async findByUserAndName(req, res, next) {
+
+        try {
+            const id_user = req.params.id_user;
+            const name = req.params.name;
+
+            const data = await Task.findByUserAndName(id_user, name);
+            return res.status(201).json(data);
+            
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al obtener las tareas del usuario',
+                error: error,
+                success: false
+            });
+            
+        }
+
+    },
+
     async create(req, res, next) {
 
         let task = req.body;

@@ -4,6 +4,8 @@ const passport = require('passport');
 module.exports = (app) => {
     
     app.get('/api/tasks/findByUserAndStatus/:id_user/:status', passport.authenticate('jwt', {session: false}), TasksController.findByUserAndStatus);
+    app.get('/api/tasks/findByUserAndName/:id_user/:name', passport.authenticate('jwt', {session: false}), TasksController.findByUserAndName);
+
 
     app.post('/api/tasks/create', passport.authenticate('jwt', {session: false}), TasksController.create);
 
