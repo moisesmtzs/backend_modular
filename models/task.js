@@ -22,6 +22,27 @@ Task.findByUserAndStatus = (id_user, status) => {
 
 }
 
+Task.findByUserAndName = (id_user, name) => {
+
+    const sql = `
+    SELECT
+        T.id,
+        T.id_user,
+        T.name,
+        T.description,
+        T.delivery_date,
+        T.subject,
+        T.type,
+        T.status
+    FROM tasks as T
+    WHERE T.id_user = $1 AND upper(T.name) = $2
+    GROUP BY T.id
+    `;
+
+    return db.manyOrNone(sql, [id_user, name]);
+
+}
+
 Task.create = (task) => {
 
     const sql = `
