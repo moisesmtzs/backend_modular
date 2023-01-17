@@ -51,7 +51,7 @@ Subject.update = (subject) => {
     SET
         name = $2,
         subject_code = $3,
-        profesor_name = $4,
+        professor_name = $4,
         updated_at = $5
     WHERE
         id = $1`;
@@ -60,7 +60,7 @@ Subject.update = (subject) => {
         subject.id,
         subject.name,
         subject.subject_code,
-        subject.profesor_name,
+        subject.professor_name,
         new Date(),
     ]);
 }
