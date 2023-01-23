@@ -48,7 +48,7 @@ subject(app);
 clase(app);
 
 
-server.listen(3000, '192.168.31.247' || 'localhost', function() {
+server.listen(3000, '192.168.1.68' || 'localhost', function() {
     console.log("Servidor en NodeJS iniciado..." + port );
 });
 

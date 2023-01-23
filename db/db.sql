@@ -81,9 +81,10 @@ create table instruction(
 
 drop table if exists ia_task cascade;
 create table ia_task(
-    id bigint not null,
-    word varchar(255) not null,
-    object varchar(255) not null,
+    id bigserial primary key,
+    command varchar(255) not null,
+    type bigint,
+	obj bigint,
     created_at timestamp(0) not null,
     updated_at timestamp(0) not null
 )

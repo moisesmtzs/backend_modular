@@ -21,12 +21,12 @@ module.exports = {
         }
     },
 
-    async finByWord(req, res, next) {
+    async findByCommand(req, res, next) {
 
         try {
-            const word = req.params.word;
-
-            const data = await ia.getByWord(word);
+            const word = req.params.command;
+            console.log(word);
+            const data = await ia.getByCommand(word);
             return res.status(201).json(data);
             
         } catch (error) {
@@ -37,6 +37,29 @@ module.exports = {
                 success: false
             });
             
+        }
+
+    },
+
+    async create(req, res, next) {
+
+        let task = req.body;
+
+        try {
+            const data = await ia.create(task);
+
+            return res.status(201).json({
+                success: true,
+                message: 'Comando creado correctamente',
+                data: data.id
+            });
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error creando el Comando',
+                error: error
+            });
         }
 
     }
