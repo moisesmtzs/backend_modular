@@ -3,6 +3,7 @@ const Clase = require('../models/clase');
 module.exports = {
 
     async create(req, res, next) {
+        console.log("Entro");
         try{
             const clase = req.body;
                 const data = await Clase.create(clase);
@@ -16,7 +17,7 @@ module.exports = {
             console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
-                message: 'Error al crear Materia',
+                message: 'Error al crear la Clase',
                 error: error
             });
             
@@ -27,7 +28,7 @@ module.exports = {
         try {
             const id_user = req.params.id_user;
             const id_subject = req.params.id_subject;
-
+            
             const data = await Clase.findByUserAndSubject(id_user, id_subject);
             return res.status(201).json(data);
         
@@ -43,6 +44,7 @@ module.exports = {
     },
 
     async update(req, res, next) {
+        
         try {
             const clase = req.body;
             await Clase.update(clase);

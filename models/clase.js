@@ -19,7 +19,7 @@ Clase.create = async(clase) => {
     `;
 
     return db.oneOrNone(sql, [
-        task.id_user,
+        clase.id_user,
         clase.id_subject,
         clase.begin_hour,
         clase.end_hour,
@@ -50,6 +50,7 @@ Clase.findByUserAndSubject = (id_user, id_subject) => {
 }
 
 Clase.update = (clase) => {
+    console.log("Entro");
     const sql = `
     UPDATE
         clase
@@ -59,10 +60,10 @@ Clase.update = (clase) => {
         days = $5,
         clasroom = $6,
         building = $7
-        updated_at = $8
+        updated_at = $9
     WHERE
         id = $1`;
-
+        console.log("salio");
     return db.none(sql, [
         clase.id,
         clase.begin_hour,

@@ -52,7 +52,7 @@ Subject.update = (subject) => {
         name = $2,
         subject_code = $3,
         professor_name = $4,
-        updated_at = $5
+        updated_at = $6
     WHERE
         id = $1`;
 
