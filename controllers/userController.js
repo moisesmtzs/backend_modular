@@ -11,7 +11,7 @@ module.exports = {
         try {
             const data = await User.getAll();
             console.log(`Usuarios: ${data}`);
-            return res.status(201).json(data);
+            return res.status(200).json(data);
         } catch (error) {
             console.log(`Error: ${error}`);
             return res.status(501).json({
