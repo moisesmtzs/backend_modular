@@ -13,4 +13,6 @@ module.exports = (app) => {
     
     
     app.get('/api/subject/findByName/:name/:id', subjectController.findByName);
+
+    app.get('/api/subject/findByNameIA/:name/:id', subjectController.findByNameIA);
 }

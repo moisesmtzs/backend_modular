@@ -52,7 +52,7 @@ Subject.update = (subject) => {
         name = $2,
         subject_code = $3,
         professor_name = $4,
-        updated_at = $6
+        updated_at = $5
     WHERE
         id = $1`;
 
@@ -83,6 +83,23 @@ Subject.findByName = async(name, id_user) => {
         subject
     WHERE
         name = $1
+    AND
+        id_user = $2`;
+
+    return db.manyOrNone(sql, [
+        name,
+        id_user
+    ]);
+}
+
+Subject.findByNameIA = async(name, id_user) => {
+    const sql = `
+    SELECT
+        *
+    FROM
+        subject
+    WHERE
+        upper(name) = $1
     AND
         id_user = $2`;
 
