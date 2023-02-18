@@ -35,6 +35,7 @@ Clase.findByUserAndSubject = (id_user, id_subject) => {
     const sql = `
     SELECT
         C.id,
+        C.id_user,
         C.id_subject,
         C.begin_hour,
         C.end_hour,
@@ -42,15 +43,33 @@ Clase.findByUserAndSubject = (id_user, id_subject) => {
         C.classroom,
         C.building
     FROM clase as C
-    WHERE C.id_user = $1 AND C.id_subject = $1
+    WHERE C.id_user = $1 AND C.id_subject = $2
     GROUP BY C.id
     `;
 
     return db.manyOrNone(sql, [id_user, id_subject]);
 }
 
+Clase.findByUserAndDay = (id_user, day) => {
+    const sql = `
+    SELECT
+        C.id,
+        C.id_user,
+        C.id_subject,
+        C.begin_hour,
+        C.end_hour,
+        C.days,
+        C.classroom,
+        C.building
+    FROM clase as C
+    WHERE C.id_user = $1 AND C.days = $2
+    GROUP BY C.id
+    `;
+
+    return db.manyOrNone(sql, [id_user, day]);
+}
+
 Clase.update = (clase) => {
-    console.log("Entro");
     const sql = `
     UPDATE
         clase
@@ -63,7 +82,6 @@ Clase.update = (clase) => {
         updated_at = $9
     WHERE
         id = $1`;
-        console.log("salio");
     return db.none(sql, [
         clase.id,
         clase.begin_hour,

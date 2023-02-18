@@ -30,12 +30,32 @@ module.exports = {
             const id_subject = req.params.id_subject;
             
             const data = await Clase.findByUserAndSubject(id_user, id_subject);
+            console.log(`Clases: ${data}`);
             return res.status(201).json(data);
         
         } catch (error) {
             console.log(`Error: ${error}`);
             return res.status(501).json({
                 message: 'Hubo un error al obtener las clases de la materia',
+                error: error,
+                success: false
+            });
+            
+        }
+    },
+
+    async findByUserAndDay(req, res, next) {
+        try {
+            const id_user = req.params.id_user;
+            const day = req.params.day;
+            const data = await Clase.findByUserAndDay(id_user, day);
+            console.log(`Clases: ${data}`);
+            return res.status(201).json(data);
+        
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al obtener las clases del dia',
                 error: error,
                 success: false
             });
