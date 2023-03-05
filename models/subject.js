@@ -99,7 +99,7 @@ Subject.findByNameIA = async(name, id_user) => {
     FROM
         subject
     WHERE
-        upper(name) = $1
+        name = $1
     AND
         id_user = $2`;
 
