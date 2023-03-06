@@ -50,17 +50,12 @@ Clase.findByUserAndSubject = (id_user, id_subject) => {
     return db.manyOrNone(sql, [id_user, id_subject]);
 }
 
+
 Clase.findByUserAndDay = (id_user, day) => {
     const sql = `
     SELECT
-        C.id,
-        C.id_user,
-        C.id_subject,
         C.begin_hour,
-        C.end_hour,
-        C.days,
-        C.classroom,
-        C.building
+        C.end_hour
     FROM clase as C
     WHERE C.id_user = $1 AND C.days = $2
     GROUP BY C.id
