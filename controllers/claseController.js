@@ -44,7 +44,6 @@ module.exports = {
             const id_subject = req.params.id_subject;
             
             const data = await Clase.findByUserAndSubject(id_user, id_subject);
-            console.log(`Clases: ${data}`);
             return res.status(201).json(data);
         
         } catch (error) {
@@ -63,7 +62,6 @@ module.exports = {
             const id_user = req.params.id_user;
             const day = req.params.day;
             const data = await Clase.findByUserAndDay(id_user, day);
-            console.log(`Clases: ${data}`);
             return res.status(201).json(data);
         
         } catch (error) {

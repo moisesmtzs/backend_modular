@@ -64,25 +64,53 @@ Clase.findByUserAndDay = (id_user, day) => {
     return db.manyOrNone(sql, [id_user, day]);
 }
 
-Clase.update = (clase) => {
+// Clase.update = (clase) => {
+//     console.log(clase);
+//     const sql = `
+//     UPDATE
+//         clase
+//     SET
+//         begin_hour = $3,
+//         end_hour = $4,
+//         days = $5,
+//         classroom = $6,
+//         building = $7,
+//         updated_at = $8
+//     WHERE
+//         id = $1`;
+        
+//     return db.none(sql, [
+//         clase.id,
+//         clase.begin_hour,
+//         clase.end_hour,
+//         clase.days,
+//         clase.classroom,
+//         clase.building,
+//         new Date(),
+//     ]);
+// }
+
+Clase.update = (clase) =>{
+    console.log(clase);
     const sql = `
     UPDATE
         clase
     SET
-        begin_hour = $3,
-        end_hour = $4,
-        days = $5,
-        clasroom = $6,
-        building = $7
-        updated_at = $9
+        begin_hour = $2,
+        end_hour = $3,
+        days = $4,
+        classroom = $5,
+        building = $6,
+        updated_at = $7
     WHERE
         id = $1`;
+
     return db.none(sql, [
         clase.id,
         clase.begin_hour,
         clase.end_hour,
         clase.days,
-        clase.clasroom,
+        clase.classroom,
         clase.building,
         new Date(),
     ]);

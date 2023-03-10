@@ -45,6 +45,7 @@ Subject.findByUser = (id_user) => {
 
 
 Subject.update = (subject) => {
+    console.log(subject);
     const sql = `
     UPDATE
         subject
