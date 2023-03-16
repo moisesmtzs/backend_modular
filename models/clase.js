@@ -31,6 +31,27 @@ Clase.create = async(clase) => {
     ]);
 }
 
+Clase.findByUser = (id_user) => {
+    const sql = `
+    SELECT
+        C.id,
+        C.id_user,
+        C.id_subject,
+        C.begin_hour,
+        C.end_hour,
+        C.days,
+        C.classroom,
+        C.building
+    FROM
+        clase as C
+    WHERE 
+        C.id_user = $1 
+    GROUP BY 
+        C.id`;
+
+    return db.manyOrNone(sql, [id_user]);
+}
+
 Clase.findByUserAndSubject = (id_user, id_subject) => {
     const sql = `
     SELECT
