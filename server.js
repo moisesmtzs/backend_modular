@@ -14,6 +14,7 @@ const tasks = require('./routes/taskRoutes');
 const ia = require('./routes/iaRoutes');
 const subject = require('./routes/subjectRoutes');
 const clase = require('./routes/claseRoutes');
+const sync = require('./routes/syncRoutes');
 
 const port = process.env.PORT || 3000;
 
@@ -46,10 +47,11 @@ tasks(app);
 ia(app);
 subject(app);
 clase(app);
+sync(app);
 
 
-server.listen(3000, '192.168.31.247' || 'localhost', function() {
-    console.log("Servidor en NodeJS iniciado..." + port );
+server.listen(3000, '10.204.222.53' || 'localhost', function() {
+    console.log("Servidor en Nod7JS iniciado..." + port );
 });
 
 app.use(( err, req, res, next ) => {
