@@ -130,6 +130,25 @@ module.exports = {
                 error: error
             });
         }
+        
+    },
+    
+    async getDates(req, res, next) {
+        
+        const id = req.params.id;
+        try {
+            const data = await Task.getDates(id);
+
+            return res.status(200).json(data);
+
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al eliminar la tarea',
+                success: false,
+                error: error
+            });
+        }
 
     }
 
