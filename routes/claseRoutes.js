@@ -7,6 +7,8 @@ module.exports = (app) => {
 
     app.get('/api/clase/findByUserAndSubject/:id_user/:id_subject', passport.authenticate('jwt', {session: false}), claseController.findByUserAndSubject);
     app.get('/api/clase/findByUserAndDay/:id_user/:day', passport.authenticate('jwt', {session: false}), claseController.findByUserAndDay);
+
+    app.get('/api/clase/findDates/:id', passport.authenticate('jwt', {session: false}), claseController.getDates);
     
     app.put('/api/clase/update', passport.authenticate('jwt', {session: false}), claseController.update);
 

@@ -148,4 +148,19 @@ Clase.delete = (id) => {
     return db.oneOrNone(sql, id);
 }
 
+Clase.getDates = (id) => {
+
+    const sql = `
+    SELECT
+        created_at,
+        updated_at
+    FROM
+        clase
+    WHERE 
+        id = $1
+    `;
+    return db.oneOrNone(sql, id);
+
+}
+
 module.exports = Clase;

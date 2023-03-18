@@ -130,4 +130,19 @@ Task.delete = (id) => {
 
 }
 
+Task.getDates = (id) => {
+
+    const sql = `
+    SELECT
+        created_at,
+        updated_at
+    FROM
+        tasks
+    WHERE 
+        id = $1
+    `;
+    return db.oneOrNone(sql, id);
+
+}
+
 module.exports = Task;

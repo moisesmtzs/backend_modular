@@ -112,6 +112,25 @@ module.exports = {
             });
             
         }
+    },
+
+    async getDates(req, res, next) {
+        
+        const id = req.params.id;
+        try {
+            const data = await Subject.getDates(id);
+
+            return res.status(200).json(data);
+
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al obtener las fechas',
+                success: false,
+                error: error
+            });
+        }
+
     }
 
 }

@@ -7,10 +7,11 @@ module.exports = (app) => {
 
     app.get('/api/subject/findByUser/:id_user', passport.authenticate('jwt', {session: false}), subjectController.findByUser);
 
+    app.get('/api/subject/findDates/:id', passport.authenticate('jwt', {session: false}), subjectController.getDates);
+
     app.put('/api/subject/update', passport.authenticate('jwt', {session: false}), subjectController.update);
 
     app.delete('/api/subject/delete/:id', passport.authenticate('jwt', {session: false}), subjectController.delete);
-    
     
     app.get('/api/subject/findByName/:name/:id', subjectController.findByName);
 

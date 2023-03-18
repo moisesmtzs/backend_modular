@@ -110,4 +110,19 @@ Subject.findByNameIA = async(name, id_user) => {
     ]);
 }
 
+Subject.getDates = (id) => {
+
+    const sql = `
+    SELECT
+        created_at,
+        updated_at
+    FROM
+        subject
+    WHERE 
+        id = $1
+    `;
+    return db.oneOrNone(sql, id);
+
+}
+
 module.exports = Subject;
