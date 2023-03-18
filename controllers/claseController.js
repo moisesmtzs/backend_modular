@@ -39,6 +39,25 @@ module.exports = {
         }
     },
 
+    async findByUser(req, res, next) {
+        try {
+            const id_user = req.params.id_user;
+            console.log(id_user);
+            
+            const data = await Clase.findByUser(id_user);
+            return res.status(201).json(data);
+        
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al obtener las clases por usuario',
+                error: error,
+                success: false
+            });
+            
+        }
+    },
+
     async findByUserAndSubject(req, res, next) {
         try {
             const id_user = req.params.id_user;

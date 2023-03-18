@@ -5,6 +5,7 @@ module.exports = (app) => {
 
     app.post('/api/clase/create', claseController.create);
 
+    app.get('/api/clase/findByUser/:id_user', passport.authenticate('jwt', {session: false}), claseController.findByUser);
     app.get('/api/clase/findByUserAndSubject/:id_user/:id_subject', passport.authenticate('jwt', {session: false}), claseController.findByUserAndSubject);
     app.get('/api/clase/findByUserAndDay/:id_user/:day', passport.authenticate('jwt', {session: false}), claseController.findByUserAndDay);
 
