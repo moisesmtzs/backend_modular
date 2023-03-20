@@ -85,6 +85,31 @@ Clase.findByUserAndDay = (id_user, day) => {
     return db.manyOrNone(sql, [id_user, day]);
 }
 
+Clase.findById = (begin_hour, end_hour, days, id_user) => {
+    console.log(begin_hour);
+    console.log(end_hour);
+    console.log(days);
+    console.log(id_user);
+    const sql = `
+    SELECT
+        C.id,
+        C.id_user,
+        C.id_subject,
+        C.begin_hour,
+        C.end_hour,
+        C.days,
+        C.classroom,
+        C.building
+    FROM 
+        clase as C
+    WHERE 
+        C.begin_hour = $1 AND C.end_hour = $2 AND C.days = $3 AND C.id_user = $4
+    GROUP BY C.id
+    `;
+
+    return db.manyOrNone(sql, [begin_hour, end_hour, days, id_user]);
+}
+
 // Clase.update = (clase) => {
 //     console.log(clase);
 //     const sql = `

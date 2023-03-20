@@ -77,6 +77,31 @@ module.exports = {
         }
     },
 
+    async findIdClase(req, res, next) {
+        try {
+            const begin = req.params.begin;
+            const end = req.params.end;
+            const days = req.params.days;
+            const id_user = req.params.id_user;
+            console.log(begin);
+            console.log(end);
+            console.log(days);
+            console.log(id_user);
+            
+            const data = await Clase.findById(begin, end, days,id_user);
+            return res.status(201).json(data);
+        
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al obtener el ID  de la clase',
+                error: error,
+                success: false
+            });
+            
+        }
+    },
+
     async findByUserAndDay(req, res, next) {
         try {
             const id_user = req.params.id_user;
