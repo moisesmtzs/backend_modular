@@ -112,7 +112,7 @@ Clase.findByUserAndDay = (id_user, day) => {
 // }
 
 Clase.update = (clase) =>{
-    console.log(clase);
+    // console.log(clase);
     const sql = `
     UPDATE
         clase

@@ -25,6 +25,7 @@ create table subject(
 )
 
 drop table if exists clase cascade;
+drop table if exists clase cascade;
 create table clase(
     id bigserial primary key,
     id_user bigint not null,
@@ -32,8 +33,8 @@ create table clase(
     begin_hour timestamp(0) not null,
     end_hour timestamp(0) not null,
     days varchar(13) not null,
-    classroom varchar(10) not null,
-    building varchar(20) not null,
+    classroom varchar(10) null,
+    building varchar(20) null,
     created_at timestamp(0) not null,
     updated_at timestamp(0) not null,
     foreign key (id_subject) 

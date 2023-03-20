@@ -131,6 +131,25 @@ module.exports = {
             });
         }
 
+    },
+
+    async getNameById(req, res, next) {
+        console.log("ENTRAMOS");
+        const id = req.params.id;
+        try {
+            const data = await Subject.getName(id);
+
+            return res.status(200).json(data);
+
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                message: 'Hubo un error al obtener el nombre',
+                success: false,
+                error: error
+            });
+        }
+
     }
 
 }

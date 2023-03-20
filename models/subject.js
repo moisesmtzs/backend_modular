@@ -26,6 +26,7 @@ Subject.create = async(subject) => {
 }
 
 Subject.findByUser = (id_user) => {
+    console.log(id_user);
     const sql = `
     SELECT
         S.id,
@@ -116,6 +117,20 @@ Subject.getDates = (id) => {
     SELECT
         created_at,
         updated_at
+    FROM
+        subject
+    WHERE 
+        id = $1
+    `;
+    return db.oneOrNone(sql, id);
+
+}
+
+Subject.getName = (id) => {
+
+    const sql = `
+    SELECT
+        name
     FROM
         subject
     WHERE 

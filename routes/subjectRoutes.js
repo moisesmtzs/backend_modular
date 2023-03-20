@@ -5,6 +5,8 @@ module.exports = (app) => {
 
     app.post('/api/subject/create', subjectController.create);
 
+    app.get('/api/subject/findById/:id', passport.authenticate('jwt', {session: false}), subjectController.getNameById);
+
     app.get('/api/subject/findByUser/:id_user', passport.authenticate('jwt', {session: false}), subjectController.findByUser);
 
     app.get('/api/subject/findDates/:id', passport.authenticate('jwt', {session: false}), subjectController.getDates);
