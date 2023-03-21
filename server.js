@@ -50,7 +50,7 @@ clase(app);
 sync(app);
 
 
-server.listen(3000, '192.168.31.247' || 'localhost', function() {
+server.listen(3000, '192.168.100.185' || 'localhost', function() {
     console.log("Servidor en Nod7JS iniciado..." + port );
 });
 

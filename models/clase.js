@@ -110,9 +110,6 @@ Clase.findById = (begin_hour, end_hour, days, id_user) => {
 }
 
 Clase.findByIdDayBegine = (id_user, days, begin_hour) => {
-    console.log(id_user);
-    console.log(begin_hour);
-    console.log(days);
     const sql = `
     SELECT
         C.id,
@@ -130,7 +127,7 @@ Clase.findByIdDayBegine = (id_user, days, begin_hour) => {
     GROUP BY C.id
     `;
 
-    return db.manyOrNone(sql, [id_user, begin_hour, days]);
+    return db.oneOrNone(sql, [id_user, begin_hour, days]);
 }
 
 

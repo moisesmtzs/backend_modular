@@ -85,6 +85,7 @@ module.exports = {
             const begin_hour = req.params.begin_hour;
             
             const data = await Clase.findByIdDayBegine(id_user, days, begin_hour);
+            console.log(data);
             return res.status(201).json(data);
         
         } catch (error) {
