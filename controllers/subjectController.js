@@ -134,11 +134,9 @@ module.exports = {
     },
 
     async getNameById(req, res, next) {
-        console.log("ENTRAMOS");
         const id = req.params.id;
         try {
             const data = await Subject.getName(id);
-
             return res.status(200).json(data);
 
         } catch (error) {

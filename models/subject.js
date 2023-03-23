@@ -26,7 +26,6 @@ Subject.create = async(subject) => {
 }
 
 Subject.findByUser = (id_user) => {
-    console.log(id_user);
     const sql = `
     SELECT
         S.id,
@@ -46,7 +45,6 @@ Subject.findByUser = (id_user) => {
 
 
 Subject.update = (subject) => {
-    console.log(subject);
     const sql = `
     UPDATE
         subject
@@ -112,7 +110,6 @@ Subject.findByNameIA = async(name, id_user) => {
 }
 
 Subject.getDates = (id) => {
-
     const sql = `
     SELECT
         created_at,
@@ -127,7 +124,6 @@ Subject.getDates = (id) => {
 }
 
 Subject.getName = (id) => {
-
     const sql = `
     SELECT
         name

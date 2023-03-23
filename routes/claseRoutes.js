@@ -4,7 +4,6 @@ const passport = require('passport');
 module.exports = (app) => {
 
     app.post('/api/clase/create', claseController.create);
-    //hora de inicio, hora de fin y dia
 
     app.get('/api/subject/findIdClase/:begin/:end/:days/:id_user', passport.authenticate('jwt', {session: false}), claseController.findIdClase);
 

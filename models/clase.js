@@ -85,10 +85,6 @@ Clase.findByUserAndDay = (id_user, day) => {
 }
 
 Clase.findById = (begin_hour, end_hour, days, id_user) => {
-    console.log(begin_hour);
-    console.log(end_hour);
-    console.log(days);
-    console.log(id_user);
     const sql = `
     SELECT
         C.id,
@@ -168,7 +164,6 @@ Clase.delete = (id) => {
 }
 
 Clase.getDates = (id) => {
-
     const sql = `
     SELECT
         created_at,

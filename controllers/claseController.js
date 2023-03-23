@@ -42,8 +42,6 @@ module.exports = {
     async findByUser(req, res, next) {
         try {
             const id_user = req.params.id_user;
-            console.log(id_user);
-            
             const data = await Clase.findByUser(id_user);
             return res.status(201).json(data);
         
@@ -78,14 +76,12 @@ module.exports = {
     },
 
     async findByIdDayBegine(req, res, next) {
-        console.log("ENTRAMOS");
         try {
             const id_user = req.params.id_user;
             const days = req.params.days;
             const begin_hour = req.params.begin_hour;
             
             const data = await Clase.findByIdDayBegine(id_user, days, begin_hour);
-            console.log(data);
             return res.status(201).json(data);
         
         } catch (error) {
@@ -138,8 +134,7 @@ module.exports = {
         }
     },
 
-    async update(req, res, next) {
-        
+    async update(req, res, next) {        
         try {
             const clase = req.body;
             await Clase.update(clase);
