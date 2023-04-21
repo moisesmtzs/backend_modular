@@ -59,9 +59,9 @@ module.exports = {
     async findByUserAndSubject(req, res, next) {
         try {
             const id_user = req.params.id_user;
-            const id_subject = req.params.id_subject;
+            const subject = req.params.subject;
             
-            const data = await Clase.findByUserAndSubject(id_user, id_subject);
+            const data = await Clase.findByUserAndSubject(id_user, subject);
             return res.status(201).json(data);
         
         } catch (error) {
@@ -102,7 +102,7 @@ module.exports = {
             const days = req.params.days;
             const id_user = req.params.id_user;
             
-            const data = await Clase.findById(begin, end, days,id_user);
+            const data = await Clase.findById(begin, end, days, id_user);
             return res.status(201).json(data);
         
         } catch (error) {
@@ -134,7 +134,7 @@ module.exports = {
         }
     },
 
-    async update(req, res, next) {        
+    async update(req, res, next) {     
         try {
             const clase = req.body;
             await Clase.update(clase);

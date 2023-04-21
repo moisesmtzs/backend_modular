@@ -6,7 +6,7 @@ Clase.create = async(clase) => {
     INSERT INTO 
         clase(
             id_user,
-            id_subject,
+            subject,
             begin_hour,
             end_hour,
             days,
@@ -20,7 +20,7 @@ Clase.create = async(clase) => {
 
     return db.oneOrNone(sql, [
         clase.id_user,
-        clase.id_subject,
+        clase.subject,
         clase.begin_hour,
         clase.end_hour,
         clase.days,
@@ -36,7 +36,7 @@ Clase.findByUser = (id_user) => {
     SELECT
         C.id,
         C.id_user,
-        C.id_subject,
+        C.subject,
         C.begin_hour,
         C.end_hour,
         C.days,
@@ -52,23 +52,23 @@ Clase.findByUser = (id_user) => {
     return db.manyOrNone(sql, [id_user]);
 }
 
-Clase.findByUserAndSubject = (id_user, id_subject) => {
+Clase.findByUserAndSubject = (id_user, subject) => {
     const sql = `
     SELECT
         C.id,
         C.id_user,
-        C.id_subject,
+        C.subject,
         C.begin_hour,
         C.end_hour,
         C.days,
         C.classroom,
         C.building
     FROM clase as C
-    WHERE C.id_user = $1 AND C.id_subject = $2
+    WHERE C.id_user = $1 AND C.subject = $2
     GROUP BY C.id
     `;
 
-    return db.manyOrNone(sql, [id_user, id_subject]);
+    return db.manyOrNone(sql, [id_user, subject]);
 }
 
 
@@ -89,7 +89,7 @@ Clase.findById = (begin_hour, end_hour, days, id_user) => {
     SELECT
         C.id,
         C.id_user,
-        C.id_subject,
+        C.subject,
         C.begin_hour,
         C.end_hour,
         C.days,
@@ -110,7 +110,7 @@ Clase.findByIdDayBegine = (id_user, days, begin_hour) => {
     SELECT
         C.id,
         C.id_user,
-        C.id_subject,
+        C.subject,
         C.begin_hour,
         C.end_hour,
         C.days,

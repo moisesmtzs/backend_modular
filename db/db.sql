@@ -25,11 +25,28 @@ create table subject(
 )
 
 drop table if exists clase cascade;
-drop table if exists clase cascade;
-create table clase(
+-- create table clase(
+--     id bigserial primary key,
+--     id_user bigint not null,
+--     id_subject bigint not null,
+--     begin_hour timestamp(0) not null,
+--     end_hour timestamp(0) not null,
+--     days varchar(13) not null,
+--     classroom varchar(10) null,
+--     building varchar(20) null,
+--     created_at timestamp(0) not null,
+--     updated_at timestamp(0) not null,
+--     foreign key (id_subject) 
+--         references subject(id) on update cascade on delete cascade,
+--     foreign key (id_user)
+--         references users(id) on update cascade on delete cascade
+-- )
+
+--Nueva tabla sin fk_subject
+create table clase( 
     id bigserial primary key,
     id_user bigint not null,
-    id_subject bigint not null,
+    subject varchar(150) not null,
     begin_hour timestamp(0) not null,
     end_hour timestamp(0) not null,
     days varchar(13) not null,
@@ -37,8 +54,6 @@ create table clase(
     building varchar(20) null,
     created_at timestamp(0) not null,
     updated_at timestamp(0) not null,
-    foreign key (id_subject) 
-        references subject(id) on update cascade on delete cascade,
     foreign key (id_user)
         references users(id) on update cascade on delete cascade
 )
