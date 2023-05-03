@@ -43,6 +43,7 @@ drop table if exists clase cascade;
 -- )
 
 --Nueva tabla sin fk_subject
+drop table if exists clase cascade;
 create table clase( 
     id bigserial primary key,
     id_user bigint not null,
@@ -115,7 +116,8 @@ RETURNS TRIGGER AS
 $$
 DECLARE
 BEGIN
-	UPDATE tasks SET "subject" = NEW.name;
-	RETURN NEW;
+	UPDATE tasks SET "subject" = NEW.name WHERE subject = OLD.name;  
+    UPDATE clase SET "subject" = NEW.name WHERE subject = OLD.name;
+    RETURN NEW;
 END;
 $$ LANGUAGE 'plpgsql';
